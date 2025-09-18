@@ -12,7 +12,7 @@ source:
   sha256: 20cf6c54a0352f2fb0060e6f5ef6b892c5d07a242f8aab31cd9bbceb58a7bd11
 
 build:
-  number: 0
+  number: 1
   # nvpl is only for ARM architecture
   skip: true  # [not aarch64]
   script:
@@ -45,9 +45,9 @@ outputs:
         - libnvpl-lapack-dev
       run:
         - _nvpl_dev_mutex
-        - {{ pin_compatible("libnvpl-common-dev", exact=True) }}
-        - {{ pin_compatible("libnvpl-blas-dev", exact=True) }}
-        - {{ pin_compatible("libnvpl-lapack-dev", exact=True) }}
+        - {{ pin_compatible("libnvpl-common-dev", max_pin="x.x.x") }}
+        - {{ pin_compatible("libnvpl-blas-dev", max_pin="x.x.x") }}
+        - {{ pin_compatible("libnvpl-lapack-dev", max_pin="x.x.x") }}
         - {{ pin_subpackage("libnvpl-scalapack" ~ somajor, exact=True) }}
       run_constrained:
         - arm-variant * {{ arm_variant_type }}
